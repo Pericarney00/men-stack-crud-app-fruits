@@ -29,12 +29,17 @@ app.get("/", async (req, res) => {
 app.get("/fruits", async (req, res) => {
   const allFruits = await Fruit.find({});
   console.log(allFruits)
-  res.render("fruits/index.ejs", {fruits: allFruits})
-})
+  res.render("fruits/index.ejs", { fruits: allFruits })
+});
 
 // GET /fruits/new
 app.get("/fruits/new",  (req, res) => {
   res.render("fruits/new.ejs");
+});
+
+app.get("/fruits/:fruitId", async (req, res) => {
+  const foundFruit = await Fruit.findById(req.params.fruitId)
+  res.render("fruits/show.ejs", { fruit: foundFruit })
 });
 
 //POST /fruits
@@ -46,7 +51,7 @@ app.post("/fruits", async (req, res) => {
   }
   await Fruit.create(req.body); // this is the database transaction
   res.redirect("/fruits");
-})
+});
 
 
 
