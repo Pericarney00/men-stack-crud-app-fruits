@@ -8,6 +8,8 @@
   </head>
   <body>
     <h1><%= fruit.name %></h1>
+    <a href="/fruits/<%= fruit._id %>/edit">Edit <%= fruit.name %></a>
+
     <% if (fruit.isReadyToEat) { %>
       <p>This fruit is ready to eat!</p>
     <% } else { %>
